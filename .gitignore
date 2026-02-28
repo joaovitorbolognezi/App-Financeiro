@@ -1,7 +1,5 @@
 //generated/prisma
 
-//feito para lembrar se der probmea em algo e tals como está as coisas
-
 node_modules
 .env
 generated/
