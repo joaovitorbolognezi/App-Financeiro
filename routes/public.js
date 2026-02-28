@@ -23,9 +23,10 @@ router.post('/cadastro', async (req,res) => {
             email: user.email
         }
     })
+    res.status(201).json({message : "Cadastro realizado com sucesso !"})
     }
     catch(erro){
-        res.status(500).json({mensage : "Erro no servidor!"})
+        res.status(500).json({message : "Erro no servidor!"})
         console.log(erro)
     }
 })
@@ -41,7 +42,7 @@ router.post('/login', async (req,res) => {
 
         //verifica no banco se tem o usuario com o email informado
         if(!user){
-            return res.status(404).json({mesage: "Usuario nao encontrado!"})
+            return res.status(404).json({message: "Usuario nao encontrado!"})
         }
         
         // compara a senha do banco com a do banco de dados
@@ -49,7 +50,7 @@ router.post('/login', async (req,res) => {
 
         //verifica se a senha é valida
         if (!isMatch){
-            return res.status(400).json({mesage : "Senha incorreta!"})
+            return res.status(400).json({message : "Senha incorreta!"})
         }
 
         //gerando o token JWT com expiraçao de 1 dia pois vamos deslogar o usuario pelo frontend
@@ -58,7 +59,7 @@ router.post('/login', async (req,res) => {
         res.status(200).json(token)
 
     }catch(erro){
-        res.status(500).json({mensage: "Erro do login no servidor"})
+        res.status(500).json({message: "Erro do login no servidor"})
         console.log(erro)
     }
 })
