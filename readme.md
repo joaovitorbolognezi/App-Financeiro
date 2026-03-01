@@ -2,7 +2,7 @@
 
 ## 💰 Visão Geral
 
-API REST em desenvolvimento para gerenciamento de finanças pessoais, permitindo o cadastro de usuários e o controle de transações financeiras com autenticação segura.
+API REST para gerenciamento de finanças pessoais, permitindo o cadastro de usuários e o controle de transações financeiras com autenticação segura.
 
 ## ⚙️ Funcionalidades
 
@@ -21,6 +21,29 @@ API REST em desenvolvimento para gerenciamento de finanças pessoais, permitindo
 - JSON Web Token (JWT)
 - Bcrypt
 
+## 🔗 Endpoints
+
+### Públicos
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/cadastro` | Cadastra um novo usuário |
+| POST | `/login` | Autentica o usuário e retorna o token JWT |
+
+### Privados (requer token JWT no header)
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/insereValor` | Cadastra uma nova transação |
+| GET | `/listaTransacoes` | Lista todas as transações com saldo, entradas e saídas |
+| PUT | `/alteraTransacoes/:id` | Edita uma transação pelo id |
+| DELETE | `/deletaTransacao/:id` | Deleta uma transação pelo id |
+
+Para as rotas privadas, envie o token no header:
+```
+Authorization: Bearer SEU_TOKEN
+```
+
 ## 📂 Estrutura do Projeto
 
 ```
@@ -29,6 +52,10 @@ API REST em desenvolvimento para gerenciamento de finanças pessoais, permitindo
 │   └── schema.prisma
 ├── routes/
 │   └── public.js
+│   └── private.js
+│   └── transactions.js
+├── middlewares/
+│   └── auth.js
 ├── lib/
 │   └── prisma.js
 ├── .env
@@ -42,7 +69,8 @@ Durante esse projeto, explorei conceitos fundamentais do back-end, tais como:
 - Configuração de um servidor HTTP com Express
 - Modelagem de banco de dados relacional com Prisma e PostgreSQL
 - Implementação de autenticação segura com JWT e Bcrypt
-- Estruturação de rotas e separação de responsabilidades na API
+- Estruturação de rotas públicas e privadas com middlewares
+- Separação de responsabilidades na API
 - Utilização do Prisma Migrate para versionamento do banco de dados
 
 Desenvolvido por João Vitor Bolognezi Portela durante o 3º semestre do curso de Engenharia de Software.
