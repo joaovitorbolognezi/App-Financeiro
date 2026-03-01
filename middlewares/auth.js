@@ -15,8 +15,8 @@ const auth = (req,res,next) => {
         req.userId = decoded.id
 
     }catch(erro){
-        return res.status(401).json({message: 'Token Invalido '})
         console.log(erro)
+        return res.status(401).json({message: 'Token Invalido '})
     }
 
     next()
